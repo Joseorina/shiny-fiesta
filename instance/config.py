@@ -3,20 +3,46 @@ Initial Api configuration
 """
 import os
 
-class Config():
-    pass
+class Config:
+    """
+    base configuration class
+    """
+    DEBUG = False
+    CSRF_ENABLED = True
+    TESTING = False
+    DATABASE_URL = os.getenv('DATABASE_URL')
+    SECRET_KEY = os.getenv('SECRET_KEY')
 
-class DevelopmentConfig():
-    pass
 
-class TestingConfig():
-    pass
+class DevelopmentConfig(Config):
+    """
+    Development configurations
+    """
+    DEVELOPMENT = True
+    DEBUG = True
 
-class StagingConfig():
-    pass
 
-class ProductionConfig():
-    pass
+class TestingConfig(Config):
+    """
+    Testing configurations, which separate test database
+    """
+    TESTING = True
+    DEBUG = True
+    DATABASE_URL = os.getenv('DATABASE_URL_TEST')
+
+class StagingConfig(Config):
+    """
+    Staging configurations
+    """
+    DEVELOPMENT = True
+    DEBUG = False
+
+class ProductionConfig(Config):
+    """
+    Production Configuration
+    """
+    DEBUG = False
+    TESTING = False
 
 APP_CONFIG = {
     'development': DevelopmentConfig,
