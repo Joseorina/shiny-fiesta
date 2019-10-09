@@ -5,7 +5,7 @@ from flask import  Flask, Blueprint, jsonify
 from flask import  make_response
 from flask_cors import CORS
 from instance.config import APP_CONFIG
-from app.db_config import create_tables, create_super_user
+from app.db_config import create_tables,create_super_user
 
 from app.api.v1.routes import  VERSION_ONE as v1
 
